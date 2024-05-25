@@ -1,6 +1,5 @@
 # YouTube Clone
 
-![YouTube Clone](url_to_your_image)
 
 A front-end web application that replicates the core features of YouTube, powered by the YouTube Data API, Firebase, React, and Redux.
 
