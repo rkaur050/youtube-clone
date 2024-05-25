@@ -1,36 +1,35 @@
-name : Firebase Deployment
-
-
+name: Deploy to Firebase Hosting on merge
 on:
   push:
     branches:
       - main
-
 jobs:
-  deploy:
-    name: Build & Deployment
-    runs-on : ubuntu-latest
-
+  build_and_deploy:
+    runs-on: ubuntu-latest
     steps:
-      - name : get the source code
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name : install node
+      - name: Install Node.js and npm
         uses: actions/setup-node@v2
         with:
-            node-version: '20'
+          node-version: '20'
 
-      - name : install node packages
-        run: npm i
+      - name: Install project dependencies
+        run: npm install
 
-      - name: Build
+      - name: Build project
+        env:
+          REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+          REACT_APP_AUTH_DOMAIN: ${{ secrets.REACT_APP_AUTH_DOMAIN }}
+          REACT_APP_PROJECT_ID: ${{ secrets.REACT_APP_PROJECT_ID }}
+          # Add other environment variables as needed
         run: npm run build
-        env:
-          CI: false
-      
-      - name : Deploy to Firebase
-        uses: w9jds/firebase-action@master
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          args: deploy --only hosting
-        env:
-          FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
+          projectId: yt-clone-2125
