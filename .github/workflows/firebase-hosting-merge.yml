@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+
       - name: Install Node.js and npm
         uses: actions/setup-node@v2
         with:
@@ -20,6 +20,11 @@ jobs:
 
       - name: Build project
         run: npm run build
+
+      - name: Debug Environment Variables
+        run: |
+          echo "GitHub Token: ${{ secrets.GITHUB_TOKEN }}"
+          echo "Firebase Service Account: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_YT_CLONE_2125 }}"
       
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
