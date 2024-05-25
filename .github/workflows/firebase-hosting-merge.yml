@@ -21,9 +21,6 @@ jobs:
       - name: Build project
         env:
           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
-          REACT_APP_AUTH_DOMAIN: ${{ secrets.REACT_APP_AUTH_DOMAIN }}
-          REACT_APP_PROJECT_ID: ${{ secrets.REACT_APP_PROJECT_ID }}
-          # Add other environment variables as needed
         run: npm run build
 
       - name: Deploy to Firebase Hosting
