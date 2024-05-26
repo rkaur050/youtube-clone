@@ -15,11 +15,6 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Creating .env file
-        uses: SpicyPizza/create-envfile@v1
-        with:
-          envkey_REACT_APP_YT_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
-
       - name: Install project dependencies
         run: npm install
 
