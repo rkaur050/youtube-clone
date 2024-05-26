@@ -21,7 +21,7 @@ jobs:
       - name: Set up environment variables
         run: |
           echo "REACT_APP_YT_API_KEY=${{ secrets.REACT_APP_YT_API_KEY }}" >> .env
-          
+
       - name: Install project dependencies
         run: npm install
 
@@ -32,6 +32,6 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_YT_CLONE_2125 }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_TOKEN }}
           channelId: live
           projectId: yt-clone-2125
